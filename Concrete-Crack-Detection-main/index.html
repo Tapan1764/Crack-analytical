@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .rating {
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .emoji {
+            margin: 10px;
+        }
+
+        .emoji:hover,
+        .emoji.active {
+            color: orange;
+        }
+    </style>
+    <script>
+        // get all emoji spans
+        const emojiSpans = document.querySelectorAll('.emoji');
+
+        // add click event listener to each emoji span
+        emojiSpans.forEach((emoji) => {
+        emoji.addEventListener('click', () => {
+            // remove active class from all emoji spans
+            emojiSpans.forEach((span) => {
+            span.classList.remove('active');
+            });
+
+            // add active class to the clicked emoji span
+            emoji.classList.add('active');
+
+            // display rating message based on selected emoji
+            const ratingMsg = document.getElementById('rating-msg');
+            switch (emoji.dataset.rating) {
+            case '1':
+                ratingMsg.textContent = 'Terrible';
+                break;
+            case '2':
+                ratingMsg.textContent = 'Meh';
+                break;
+            case '3':
+                ratingMsg.textContent = 'Good';
+                break;
+            case '4':
+                ratingMsg.textContent = 'Great';
+                break;
+            case '5':
+                ratingMsg.textContent = 'Amazing';
+                break;
+            default:
+                ratingMsg.textContent = '';
+                break;
+            }
+        });
+        });
+
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="rating">
+        <span class="emoji" data-rating="1">😞</span>
+        <span class="emoji" data-rating="2">😐</span>
+        <span class="emoji" data-rating="3">😊</span>
+        <span class="emoji" data-rating="4">😃</span>
+        <span class="emoji" data-rating="5">😍</span>
+      </div>
+      <p id="rating-msg"></p>
+      
+</body>
+</html>
